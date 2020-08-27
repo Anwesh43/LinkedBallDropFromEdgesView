@@ -173,4 +173,26 @@ class BallDropFromEdgesView(ctx : Context) : View(ctx) {
             curr.startUpdating(cb)
         }
     }
+
+    data class Renderer(var view : BallDropFromEdgesView) {
+
+        private val animator : Animator = Animator(view)
+        private val bdfe : BallDropFromEdge = BallDropFromEdge(0)
+
+        fun draw(canvas : Canvas, paint : Paint) {
+            canvas.drawColor(foreColor)
+            bdfe.draw(canvas, paint)
+            animator.animate {
+                bdfe.update {
+                    animator.stop()
+                }
+            }
+        }
+
+        fun handleTap() {
+            bdfe.startUpdating {
+                animator.start()
+            }
+        }
+    }
 }

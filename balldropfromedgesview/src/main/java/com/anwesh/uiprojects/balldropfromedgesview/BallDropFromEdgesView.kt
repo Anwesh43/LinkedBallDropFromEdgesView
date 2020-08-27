@@ -12,7 +12,10 @@ import android.graphics.Paint
 import android.graphics.Canvas
 import android.graphics.Color
 
-val colors : Array<Int> = arrayOf(Color.GREEN, Color.MAGENTA, Color.RED, Color.YELLOW, Color.MAGENTA)
+val colors : Array<Int> = arrayOf("#FFC107", "#F44336", "#3F51B5", "#673AB7", "#4CAF50").map {
+    Color.parseColor(it)
+}.toTypedArray()
+
 val circles : Int = 7
 val parts : Int = (circles + 1) / 2 + 1
 val scGap : Float = 0.02f / parts

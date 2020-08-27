@@ -13,8 +13,8 @@ import android.graphics.Canvas
 import android.graphics.Color
 
 val colors : Array<Int> = arrayOf(Color.GREEN, Color.MAGENTA, Color.RED, Color.YELLOW, Color.MAGENTA)
-val circles : Int = 6
-val parts : Int = circles / 2 + 1
+val circles : Int = 7
+val parts : Int = (circles + 1) / 2 + 1
 val scGap : Float = 0.02f / parts
 val foreColor : Int = Color.parseColor("#BDBDBD")
 val delay : Long = 20
@@ -25,7 +25,7 @@ fun Float.divideScale(i : Int, n : Int) : Float = Math.min(n.inverse(), maxScale
 fun Float.sinify() : Float = Math.sin(this * Math.PI).toFloat()
 
 fun Canvas.drawBallDropFromEdge(scale : Float, w : Float, h : Float, paint : Paint) {
-    val gap : Float = w / (parts)
+    val gap : Float = w / (circles)
     val sf : Float = scale.sinify()
     val sf1 : Float = sf.divideScale(0, parts)
     for (j in 0..circles - 1) {

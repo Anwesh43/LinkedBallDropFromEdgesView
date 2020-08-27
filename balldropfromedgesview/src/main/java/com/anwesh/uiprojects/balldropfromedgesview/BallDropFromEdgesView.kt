@@ -198,4 +198,13 @@ class BallDropFromEdgesView(ctx : Context) : View(ctx) {
             }
         }
     }
+
+    companion object {
+
+        fun create(activity : Activity) : BallDropFromEdgesView {
+            val view : BallDropFromEdgesView = BallDropFromEdgesView(activity)
+            activity.setContentView(view)
+            return view
+        }
+    }
 }

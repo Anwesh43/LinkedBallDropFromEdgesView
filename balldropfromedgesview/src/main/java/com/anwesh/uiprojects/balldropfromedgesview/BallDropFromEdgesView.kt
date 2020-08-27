@@ -23,3 +23,26 @@ fun Int.inverse() : Float = 1f / this
 fun Float.maxScale(i : Int, n : Int) : Float = Math.max(0f, this - i * n.inverse())
 fun Float.divideScale(i : Int, n : Int) : Float = Math.min(n.inverse(), maxScale(i, n)) * n
 fun Float.sinify() : Float = Math.sin(this * Math.PI).toFloat()
+
+fun Canvas.drawBallDropFromEdge(scale : Float, w : Float, h : Float, paint : Paint) {
+    val gap : Float = w / (parts)
+    val sf : Float = scale.sinify()
+    val sf1 : Float = sf.divideScale(0, parts)
+    for (j in 0..circles - 1) {
+        var k : Int = j
+        if (j >= circles / 2) {
+            k = circles -1 - j
+        }
+        save()
+        translate(gap * j + gap / 2, gap / 2 + (h - gap) * sf.divideScale(k + 1, parts))
+        drawCircle(0f, 0f, gap * 0.5f * sf1, paint)
+        restore()
+    }
+}
+
+fun Canvas.drawBDFENode(i : Int, scale : Float, paint : Paint) {
+    val w : Float = width.toFloat()
+    val h : Float = height.toFloat()
+    paint.color = colors[i]
+    drawBallDropFromEdge(scale, w, h, paint)
+}
